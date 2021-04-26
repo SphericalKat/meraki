@@ -41,11 +41,18 @@ const App = () => {
         <Appbar.Content title="Meraki" />
       </Appbar.Header>
 
-      <FAB icon="plus" style={styles.fab} onPress={console.log} />
+      <FAB
+        icon="plus"
+        style={[styles.fab]}
+        onPress={() => console.log('Fab pressed')}
+      />
 
       <View style={styles.content}>
         <View style={styles.buttonContainer}>
-          <Button icon="camera" mode="contained" onPress={console.log}>
+          <Button
+            icon="camera"
+            mode="contained"
+            onPress={() => console.log('FAB clicked!')}>
             Click me!
           </Button>
         </View>
@@ -72,13 +79,19 @@ const styles = StyleSheet.create({
     margin: 16,
     right: 0,
     bottom: 0,
+    shadowColor: '#FCBCC7',
+    shadowOffset: {
+      width: 0,
+      height: 12,
+    },
+    shadowOpacity: 0.8,
+    shadowRadius: 16.0,
+    elevation: 24,
+    zIndex: 100,
   },
   appbar: {
-    // position: 'absolute',
-    // left: 0,
-    // right: 0,
-    // top: 0,
     height: APPBAR_HEIGHT,
+    elevation: 0,
   },
   statusBar: {
     height: STATUSBAR_HEIGHT,
