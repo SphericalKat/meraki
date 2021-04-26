@@ -7,9 +7,10 @@ import {
   useColorScheme,
   View,
 } from 'react-native';
-import {Button, FAB, Appbar, useTheme} from 'react-native-paper';
+import {Appbar, useTheme} from 'react-native-paper';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
+import TabNavigator from './components/TabNavigator';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -41,21 +42,8 @@ const App = () => {
         <Appbar.Content title="Meraki" />
       </Appbar.Header>
 
-      <FAB
-        icon="plus"
-        style={[styles.fab]}
-        onPress={() => console.log('Fab pressed')}
-      />
-
       <View style={styles.content}>
-        <View style={styles.buttonContainer}>
-          <Button
-            icon="camera"
-            mode="contained"
-            onPress={() => console.log('FAB clicked!')}>
-            Click me!
-          </Button>
-        </View>
+        <TabNavigator />
       </View>
     </View>
   );

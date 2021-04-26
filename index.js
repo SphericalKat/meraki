@@ -1,6 +1,3 @@
-/**
- * @format
- */
 import React from 'react';
 import {AppRegistry} from 'react-native';
 import App from './src/App';
@@ -10,6 +7,8 @@ import {
   Provider as PaperProvider,
 } from 'react-native-paper';
 import {name as appName} from './app.json';
+import 'react-native-gesture-handler';
+import {NavigationContainer} from '@react-navigation/native';
 
 const fontFamily = {
   regular: {
@@ -46,13 +45,16 @@ const theme = {
     ...DefaultTheme.colors,
     primary: '#FCBCC7',
     accent: '#FCBCC7',
+    disabled: '#c29199',
   },
 };
 
 const main = () => {
   return (
     <PaperProvider theme={theme}>
-      <App />
+      <NavigationContainer theme={theme}>
+        <App />
+      </NavigationContainer>
     </PaperProvider>
   );
 };
