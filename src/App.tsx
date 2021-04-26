@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -19,28 +20,42 @@ const App = () => {
     backgroundColor: isDarkMode ? Colors.lighter : Colors.lighter,
   };
 
-  return (
-    <View>
-      <SafeAreaView style={backgroundStyle}>
-        <Appbar.Header style={styles.appbar}>
-          <Appbar.Content title="Meraki" />
-        </Appbar.Header>
+  const PlatformStatusBar: React.FC<{backgroundColor: string}> = ({
+    backgroundColor,
+  }) => (
+    <View style={[styles.statusBar, {backgroundColor}]}>
+      <SafeAreaView>
         <StatusBar
+          backgroundColor={backgroundColor}
+          translucent
           barStyle="dark-content"
-          backgroundColor={theme.colors.primary}
         />
+      </SafeAreaView>
+    </View>
+  );
 
-        <FAB icon="plus" style={styles.fab} onPress={console.log} />
+  return (
+    <View style={[styles.container, backgroundStyle]}>
+      <PlatformStatusBar backgroundColor={theme.colors.primary} />
+      <Appbar.Header style={styles.appbar}>
+        <Appbar.Content title="Meraki" />
+      </Appbar.Header>
 
+      <FAB icon="plus" style={styles.fab} onPress={console.log} />
+
+      <View style={styles.content}>
         <View style={styles.buttonContainer}>
           <Button icon="camera" mode="contained" onPress={console.log}>
             Click me!
           </Button>
         </View>
-      </SafeAreaView>
+      </View>
     </View>
   );
 };
+
+const STATUSBAR_HEIGHT = StatusBar.currentHeight;
+const APPBAR_HEIGHT = Platform.OS === 'ios' ? 44 : 56;
 
 const styles = StyleSheet.create({
   buttonContainer: {
@@ -49,6 +64,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
   },
+  container: {
+    flex: 1,
+  },
   fab: {
     position: 'absolute',
     margin: 16,
@@ -56,10 +74,17 @@ const styles = StyleSheet.create({
     bottom: 0,
   },
   appbar: {
-    position: 'absolute',
-    left: 0,
-    right: 0,
-    top: 0,
+    // position: 'absolute',
+    // left: 0,
+    // right: 0,
+    // top: 0,
+    height: APPBAR_HEIGHT,
+  },
+  statusBar: {
+    height: STATUSBAR_HEIGHT,
+  },
+  content: {
+    flex: 1,
   },
 });
 
