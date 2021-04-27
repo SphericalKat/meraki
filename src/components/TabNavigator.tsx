@@ -6,12 +6,17 @@ import HomePage from '../pages/HomePage';
 import FavoritesPage from '../pages/FavoritesPage';
 import HistoryPage from '../pages/HistoryPage';
 import CatalogPage from '../pages/CatalogPage';
+import {useTheme} from 'react-native-paper';
 
 const Tab = createMaterialBottomTabNavigator();
 
 function TabNavigator() {
+  const theme = useTheme();
   return (
-    <Tab.Navigator labeled={false} inactiveColor="#c29199">
+    <Tab.Navigator
+      labeled={false}
+      inactiveColor="#DDDCE0"
+      activeColor={theme.colors.accent}>
       <Tab.Screen
         name="Home"
         component={HomePage}
