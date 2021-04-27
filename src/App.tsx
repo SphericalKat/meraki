@@ -1,9 +1,9 @@
 import React from 'react';
 import {
-  Platform,
   SafeAreaView,
   StatusBar,
   StyleSheet,
+  Text,
   useColorScheme,
   View,
 } from 'react-native';
@@ -19,6 +19,8 @@ const App = () => {
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.lighter : Colors.lighter,
   };
+
+  const theme = useTheme();
 
   const PlatformStatusBar: React.FC<{backgroundColor: string}> = ({
     backgroundColor,
@@ -37,15 +39,17 @@ const App = () => {
   return (
     <View style={[styles.container, backgroundStyle]}>
       <PlatformStatusBar backgroundColor="transparent" />
-      <Appbar.Header style={styles.appbar}>
-        <Appbar.Content titleStyle={styles.title} title="Meraki" />
+      <View style={styles.appbar}>
+        <Text style={[styles.title, {color: theme.colors.primary}]}>
+          Meraki
+        </Text>
         <Appbar.Action
-          icon={({size, color}) => (
-            <Feather name="search" size={size} color={color} />
+          icon={({size}) => (
+            <Feather name="search" size={size} color={theme.colors.primary} />
           )}
           onPress={() => console.log('Search pressed!')}
         />
-      </Appbar.Header>
+      </View>
 
       <View style={styles.content}>
         <TabNavigator />
@@ -82,14 +86,17 @@ const styles = StyleSheet.create({
     zIndex: 100,
   },
   appbar: {
-    height: 72,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
     backgroundColor: 'transparent',
-    justifyContent: 'center',
     elevation: 0,
+    padding: 24,
   },
   title: {
+    fontFamily: 'Metropolis-ExtraBold',
+    color: 'black',
     fontSize: 32,
-    fontWeight: 'bold',
   },
   statusBar: {
     height: STATUSBAR_HEIGHT,

@@ -12,22 +12,22 @@ import {NavigationContainer} from '@react-navigation/native';
 
 const fontFamily = {
   regular: {
-    fontFamily: 'Inter-Regular',
+    fontFamily: 'Metropolis-Regular',
     fontWeight: 'normal',
   },
 
   medium: {
-    fontFamily: 'Inter-Medium',
+    fontFamily: 'Metropolis-Medium',
     fontWeight: 'normal',
   },
 
   light: {
-    fontFamily: 'Inter-Light',
+    fontFamily: 'Metropolis-Light',
     fontWeight: 'normal',
   },
 
   thin: {
-    fontFamily: 'Inter-Thin',
+    fontFamily: 'Metropolis-Thin',
     fontWeight: 'normal',
   },
 };

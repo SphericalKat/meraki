@@ -50,12 +50,12 @@ const styles = StyleSheet.create({
   },
   name: {
     marginTop: 16,
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'Metropolis-SemiBold',
     fontSize: 18,
   },
   price: {
     marginTop: 4,
-    fontFamily: 'Inter-SemiBold',
+    fontFamily: 'Metropolis-SemiBold',
     fontSize: 18,
   },
 });
