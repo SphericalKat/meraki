@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {Text, View, StyleSheet, Image} from 'react-native';
+import {useTheme} from 'react-native-paper';
 
 interface ItemCardProps {
   name: string;
@@ -9,6 +10,7 @@ interface ItemCardProps {
 
 const ItemCard = ({name, imageURL, price}: ItemCardProps) => {
   const [size, setSize] = useState({height: 1, width: 1});
+  const theme = useTheme();
 
   useEffect(() => {
     Image.getSize(imageURL, (w, h) => {
@@ -27,10 +29,14 @@ const ItemCard = ({name, imageURL, price}: ItemCardProps) => {
         ]}
         source={{uri: `${imageURL}`}}
       />
-      <Text style={styles.name} numberOfLines={1}>
+      <Text
+        style={[styles.name, {color: theme.colors.primary}]}
+        numberOfLines={1}>
         {name}
       </Text>
-      <Text style={styles.price} numberOfLines={1}>
+      <Text
+        style={[styles.price, {color: theme.colors.primary}]}
+        numberOfLines={1}>
         {price}
       </Text>
     </View>
