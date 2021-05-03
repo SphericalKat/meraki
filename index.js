@@ -9,6 +9,8 @@ import {
 import {name as appName} from './app.json';
 import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
+import {Provider} from 'react-redux';
+import {store} from './src/store/store';
 
 const fontFamily = {
   regular: {
@@ -51,11 +53,13 @@ const theme = {
 
 const main = () => {
   return (
-    <PaperProvider theme={theme}>
-      <NavigationContainer theme={theme}>
-        <App />
-      </NavigationContainer>
-    </PaperProvider>
+    <Provider store={store}>
+      <PaperProvider theme={theme}>
+        <NavigationContainer theme={theme}>
+          <App />
+        </NavigationContainer>
+      </PaperProvider>
+    </Provider>
   );
 };
 

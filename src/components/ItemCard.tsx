@@ -13,9 +13,13 @@ const ItemCard = ({name, imageURL, price}: ItemCardProps) => {
   const theme = useTheme();
 
   useEffect(() => {
+    let isMounted = true;
     Image.getSize(imageURL, (w, h) => {
       setSize({height: h, width: w});
     });
+    return () => {
+      isMounted = false;
+    };
   }, [size, imageURL]);
 
   return (

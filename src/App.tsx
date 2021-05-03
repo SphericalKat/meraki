@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -12,15 +12,25 @@ import {Appbar, useTheme} from 'react-native-paper';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import TabNavigator from './components/TabNavigator';
+import * as SecureStore from 'expo-secure-store';
+import AuthPage from './pages/AuthPage';
+import {useAppDispatch, useAppSelector} from './store/hooks';
+import {setToken} from './store/token';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
+  const token = useAppSelector(state => state.token.value);
+  const dispatch = useAppDispatch();
+
+  SecureStore.getItemAsync('TOKEN').then(t => dispatch(setToken(t)));
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.lighter : Colors.lighter,
   };
 
   const theme = useTheme();
+
+  console.log(token);
 
   const PlatformStatusBar: React.FC<{backgroundColor: string}> = ({
     backgroundColor,
@@ -52,7 +62,7 @@ const App = () => {
       </View>
 
       <View style={styles.content}>
-        <TabNavigator />
+        {token ? <TabNavigator /> : <AuthPage />}
       </View>
     </View>
   );
