@@ -55,12 +55,14 @@ const App = () => {
         <Text style={[styles.title, {color: theme.colors.primary}]}>
           Meraki
         </Text>
-        <Appbar.Action
-          icon={({size}) => (
-            <Feather name="search" size={size} color={theme.colors.primary} />
-          )}
-          onPress={() => console.log('Search pressed!')}
-        />
+        {token && (
+          <Appbar.Action
+            icon={({size}) => (
+              <Feather name="search" size={size} color={theme.colors.primary} />
+            )}
+            onPress={() => console.log('Search pressed!')}
+          />
+        )}
       </View>
 
       <View style={styles.content}>
