@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -22,15 +22,17 @@ const App = () => {
   const token = useAppSelector(state => state.token.value);
   const dispatch = useAppDispatch();
 
-  SecureStore.getItemAsync('TOKEN').then(t => dispatch(setToken(t)));
+  SecureStore.getItemAsync('TOKEN').then(t => {
+    if (t) {
+      dispatch(setToken(t));
+    }
+  });
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.lighter : Colors.lighter,
   };
 
   const theme = useTheme();
-
-  console.log(token);
 
   const PlatformStatusBar: React.FC<{backgroundColor: string}> = ({
     backgroundColor,
