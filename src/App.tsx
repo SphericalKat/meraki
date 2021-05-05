@@ -1,12 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import {
-  SafeAreaView,
-  StatusBar,
-  StyleSheet,
-  Text,
-  useColorScheme,
-  View,
-} from 'react-native';
+import {SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {Appbar, useTheme} from 'react-native-paper';
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
@@ -20,7 +13,6 @@ import {setToken} from './store/token';
 import auth from '@react-native-firebase/auth';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
   const token = useAppSelector(state => state.token.value);
   const dispatch = useAppDispatch();
   const [loading, setLoading] = useState(true);
@@ -51,10 +43,6 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.lighter : Colors.lighter,
-  };
-
   const theme = useTheme();
 
   const PlatformStatusBar: React.FC<{backgroundColor: string}> = ({
@@ -72,11 +60,11 @@ const App = () => {
   );
 
   return (
-    <View style={[styles.container, backgroundStyle]}>
+    <View style={[styles.container]}>
       <PlatformStatusBar backgroundColor="transparent" />
       <View style={styles.appbar}>
         <Text style={[styles.title, {color: theme.colors.primary}]}>
-          Meraki
+          meraki
         </Text>
         {token && (
           <Appbar.Action
@@ -106,6 +94,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
+    backgroundColor: Colors.lighter,
   },
   fab: {
     position: 'absolute',
@@ -131,7 +120,7 @@ const styles = StyleSheet.create({
     padding: 24,
   },
   title: {
-    fontFamily: 'Metropolis-ExtraBold',
+    fontFamily: 'Wishingly',
     color: 'black',
     fontSize: 32,
   },

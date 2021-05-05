@@ -33,6 +33,7 @@
 		E2F9B650061C44B49347ECA7 /* Metropolis-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 57E90415F1694CBCBA83B46F /* Metropolis-Light.otf */; };
 		EC158CC2C55540C5B0B5A87D /* Metropolis-ExtraBold.otf in Resources */ = {isa = PBXBuildFile; fileRef = F2EB1112D4F04F969EA49B2F /* Metropolis-ExtraBold.otf */; };
 		FCCE00E30FA64949B37AF478 /* Metropolis-RegularItalic.otf in Resources */ = {isa = PBXBuildFile; fileRef = 2273FF78911E43DFBC68BA4B /* Metropolis-RegularItalic.otf */; };
+		0EC39E435DD44C0E854E0D4E /* Wishingly.otf in Resources */ = {isa = PBXBuildFile; fileRef = 40402F9CC78C4319A568CC27 /* Wishingly.otf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,6 +108,7 @@
 		F72288B277A84A08A5941AA3 /* Metropolis-BlackItalic.otf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = "Metropolis-BlackItalic.otf"; path = "../assets/fonts/Metropolis-BlackItalic.otf"; sourceTree = "<group>"; };
 		FE7C3BAA28F14F899B8EEADD /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = MaterialCommunityIcons.ttf; path = "../node_modules/react-native-vector-icons/Fonts/MaterialCommunityIcons.ttf"; sourceTree = "<group>"; };
 		FEF6387AB9C94C929014681E /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; explicitFileType = undefined; fileEncoding = 9; includeInIndex = 0; lastKnownFileType = unknown; name = FontAwesome5_Brands.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome5_Brands.ttf"; sourceTree = "<group>"; };
+		40402F9CC78C4319A568CC27 /* Wishingly.otf */ = {isa = PBXFileReference; name = "Wishingly.otf"; path = "../assets/fonts/Wishingly.otf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -259,6 +261,7 @@
 				7C326FFE29094A179BF06E82 /* Metropolis-SemiBoldItalic.otf */,
 				708AC7AC526E4FFA965621E1 /* Metropolis-Thin.otf */,
 				9076E60EF74A4066B68FBA14 /* Metropolis-ThinItalic.otf */,
+				40402F9CC78C4319A568CC27 /* Wishingly.otf */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -377,6 +380,7 @@
 				8792D04AD8C74A939656C4AB /* Metropolis-Thin.otf in Resources */,
 				7CF7E09F1F8F4868B015546C /* Metropolis-ThinItalic.otf in Resources */,
 				AF1BE9F5263EE6DE007675F5 /* GoogleService-Info.plist in Resources */,
+				0EC39E435DD44C0E854E0D4E /* Wishingly.otf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
