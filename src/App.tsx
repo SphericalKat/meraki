@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   SafeAreaView,
   StatusBar,
@@ -9,6 +9,7 @@ import {
 } from 'react-native';
 import Feather from 'react-native-vector-icons/Feather';
 import {Appbar, useTheme} from 'react-native-paper';
+import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import TabNavigator from './components/TabNavigator';
@@ -16,17 +17,39 @@ import * as SecureStore from 'expo-secure-store';
 import AuthPage from './pages/AuthPage';
 import {useAppDispatch, useAppSelector} from './store/hooks';
 import {setToken} from './store/token';
+import auth from '@react-native-firebase/auth';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
   const token = useAppSelector(state => state.token.value);
   const dispatch = useAppDispatch();
+  const [loading, setLoading] = useState(true);
+  const [user, setUser] = useState<FirebaseAuthTypes.User | null>(null);
 
-  SecureStore.getItemAsync('TOKEN').then(t => {
-    if (t) {
-      dispatch(setToken(t));
+  useEffect(() => {
+    async function getToken() {
+      if (user != null) {
+        const t = await user.getIdToken();
+        SecureStore.setItemAsync('TOKEN', t);
+        dispatch(setToken(t));
+      }
     }
-  });
+    getToken();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [user]);
+
+  useEffect(() => {
+    const subscriber = auth().onAuthStateChanged(userState => {
+      setUser(userState);
+    });
+
+    if (loading) {
+      setLoading(false);
+    }
+
+    return subscriber;
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const backgroundStyle = {
     backgroundColor: isDarkMode ? Colors.lighter : Colors.lighter,
