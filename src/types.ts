@@ -3,4 +3,5 @@ export interface Item {
   name: string;
   imageURL: string;
   price: string;
+  description: string;
 }

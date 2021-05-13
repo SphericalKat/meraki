@@ -7,8 +7,20 @@ import FavoritesPage from '../pages/FavoritesPage';
 import HistoryPage from '../pages/HistoryPage';
 import CatalogPage from '../pages/CatalogPage';
 import {useTheme} from 'react-native-paper';
+import {createStackNavigator} from '@react-navigation/stack';
+import ItemPage from '../pages/ItemPage';
 
 const Tab = createMaterialBottomTabNavigator();
+const HomeStack = createStackNavigator();
+
+function HomeStackScreen() {
+  return (
+    <HomeStack.Navigator>
+      <HomeStack.Screen name="homepage" component={HomePage} />
+      <HomeStack.Screen name="itempage" component={ItemPage} />
+    </HomeStack.Navigator>
+  );
+}
 
 function TabNavigator() {
   const theme = useTheme();
@@ -19,7 +31,7 @@ function TabNavigator() {
       activeColor={theme.colors.accent}>
       <Tab.Screen
         name="Home"
-        component={HomePage}
+        component={HomeStackScreen}
         options={{
           tabBarIcon: ({color}) => (
             <Entypo name="home" color={color} size={24} />

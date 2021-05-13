@@ -46,6 +46,7 @@ const HomePage = (_props: HomePageProps) => {
                 .filter((_, i) => i % 2 === 0)
                 .map(item => (
                   <ItemCard
+                    id={item.id}
                     key={item.id}
                     name={item.name}
                     imageURL={item.imageURL}
@@ -59,6 +60,7 @@ const HomePage = (_props: HomePageProps) => {
                 .filter((_, i) => i % 2 !== 0)
                 .map(item => (
                   <ItemCard
+                    id={item.id}
                     key={item.id}
                     name={item.name}
                     imageURL={item.imageURL}
