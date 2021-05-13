@@ -11,7 +11,7 @@ import {
 } from 'react-native-paper';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import auth from '@react-native-firebase/auth';
-import * as Progress from 'react-native-progress';
+import Loading from '../components/Loading';
 
 interface AuthPageProps {}
 
@@ -29,18 +29,7 @@ const AuthPage = (_props: AuthPageProps) => {
   const theme = useTheme();
 
   if (loading) {
-    return (
-      <View style={styles.container}>
-        <View style={styles.loading}>
-          <Progress.Circle
-            size={48}
-            color={theme.colors.primary}
-            borderWidth={6}
-            indeterminate
-          />
-        </View>
-      </View>
-    );
+    return <Loading />;
   }
 
   return (
@@ -172,10 +161,6 @@ const styles = StyleSheet.create({
     alignItems: 'stretch',
     height: '100%',
     width: '100%',
-  },
-  loading: {
-    flexDirection: 'row',
-    justifyContent: 'center',
   },
   title: {
     fontFamily: 'Metropolis-Bold',
