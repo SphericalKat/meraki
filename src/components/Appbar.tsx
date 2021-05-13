@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     backgroundColor: 'transparent',
     elevation: 0,
-    padding: 24,
+    // padding: 24,
   },
 
   title: {

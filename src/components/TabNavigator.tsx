@@ -9,19 +9,28 @@ import CatalogPage from '../pages/CatalogPage';
 import {useTheme} from 'react-native-paper';
 import {createStackNavigator} from '@react-navigation/stack';
 import ItemPage from '../pages/ItemPage';
+import AppBar from './Appbar';
 
 const Tab = createMaterialBottomTabNavigator();
 const HomeStack = createStackNavigator();
 
 function HomeStackScreen() {
+  const theme = useTheme();
   return (
-    <HomeStack.Navigator>
+    <HomeStack.Navigator
+      screenOptions={{
+        headerTintColor: theme.colors.primary,
+      }}>
       <HomeStack.Screen
         name="homepage"
         component={HomePage}
-        options={{title: 'My home'}}
+        options={{headerTitle: () => <AppBar showSearch />}}
       />
-      <HomeStack.Screen name="itempage" component={ItemPage} />
+      <HomeStack.Screen
+        name="itempage"
+        component={ItemPage}
+        options={{headerTitle: () => <AppBar />}}
+      />
     </HomeStack.Navigator>
   );
 }
