@@ -11,6 +11,7 @@ import 'react-native-gesture-handler';
 import {NavigationContainer} from '@react-navigation/native';
 import {Provider} from 'react-redux';
 import {store} from './src/store/store';
+import {ApolloClient, ApolloProvider, InMemoryCache} from '@apollo/client';
 
 const fontFamily = {
   regular: {
@@ -52,15 +53,22 @@ const theme = {
   },
 };
 
+const client = new ApolloClient({
+  uri: '192.168.1.48:4000/graphql',
+  cache: new InMemoryCache(),
+});
+
 const main = () => {
   return (
-    <Provider store={store}>
-      <PaperProvider theme={theme}>
-        <NavigationContainer theme={theme}>
-          <App />
-        </NavigationContainer>
-      </PaperProvider>
-    </Provider>
+    <ApolloProvider client={client}>
+      <Provider store={store}>
+        <PaperProvider theme={theme}>
+          <NavigationContainer theme={theme}>
+            <App />
+          </NavigationContainer>
+        </PaperProvider>
+      </Provider>
+    </ApolloProvider>
   );
 };
 
