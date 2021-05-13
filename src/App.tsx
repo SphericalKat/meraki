@@ -1,7 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView, StatusBar, StyleSheet, Text, View} from 'react-native';
-import Feather from 'react-native-vector-icons/Feather';
-import {Appbar, useTheme} from 'react-native-paper';
+import {SafeAreaView, StatusBar, StyleSheet, View} from 'react-native';
+
 import {FirebaseAuthTypes} from '@react-native-firebase/auth';
 
 import {Colors} from 'react-native/Libraries/NewAppScreen';
@@ -43,8 +42,6 @@ const App = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const theme = useTheme();
-
   const PlatformStatusBar: React.FC<{backgroundColor: string}> = ({
     backgroundColor,
   }) => (
@@ -62,20 +59,6 @@ const App = () => {
   return (
     <View style={[styles.container]}>
       <PlatformStatusBar backgroundColor="transparent" />
-      <View style={styles.appbar}>
-        <Text style={[styles.title, {color: theme.colors.primary}]}>
-          meraki
-        </Text>
-        {token && (
-          <Appbar.Action
-            icon={({size}) => (
-              <Feather name="search" size={size} color={theme.colors.primary} />
-            )}
-            onPress={() => console.log('Search pressed!')}
-          />
-        )}
-      </View>
-
       <View style={styles.content}>
         {token ? <TabNavigator /> : <AuthPage />}
       </View>
@@ -110,19 +93,6 @@ const styles = StyleSheet.create({
     shadowRadius: 16.0,
     elevation: 24,
     zIndex: 100,
-  },
-  appbar: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    backgroundColor: 'transparent',
-    elevation: 0,
-    padding: 24,
-  },
-  title: {
-    fontFamily: 'Wishingly',
-    color: 'black',
-    fontSize: 32,
   },
   statusBar: {
     height: STATUSBAR_HEIGHT,

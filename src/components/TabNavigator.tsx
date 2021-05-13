@@ -16,7 +16,11 @@ const HomeStack = createStackNavigator();
 function HomeStackScreen() {
   return (
     <HomeStack.Navigator>
-      <HomeStack.Screen name="homepage" component={HomePage} />
+      <HomeStack.Screen
+        name="homepage"
+        component={HomePage}
+        options={{title: 'My home'}}
+      />
       <HomeStack.Screen name="itempage" component={ItemPage} />
     </HomeStack.Navigator>
   );
