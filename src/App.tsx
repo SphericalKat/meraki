@@ -10,6 +10,7 @@ import AuthPage from './pages/AuthPage';
 import {useAppDispatch, useAppSelector} from './store/hooks';
 import {setToken} from './store/token';
 import auth from '@react-native-firebase/auth';
+import Loading from './components/Loading';
 
 const App = () => {
   const token = useAppSelector(state => state.token.value);
@@ -21,8 +22,12 @@ const App = () => {
     async function getToken() {
       if (user != null) {
         const t = await user.getIdToken();
-        SecureStore.setItemAsync('TOKEN', t);
+        await SecureStore.setItemAsync('TOKEN', t);
+        console.log(t);
         dispatch(setToken(t));
+        if (loading) {
+          setLoading(false);
+        }
       }
     }
     getToken();
@@ -34,13 +39,12 @@ const App = () => {
       setUser(userState);
     });
 
-    if (loading) {
-      setLoading(false);
-    }
-
     return subscriber;
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (loading) {
+    return <Loading />;
+  }
 
   const PlatformStatusBar: React.FC<{backgroundColor: string}> = ({
     backgroundColor,
