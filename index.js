@@ -54,7 +54,7 @@ const theme = {
 };
 
 const client = new ApolloClient({
-  uri: '192.168.1.48:4000/graphql',
+  uri: 'http://192.168.1.48:4000/graphql',
   cache: new InMemoryCache(),
 });
 
