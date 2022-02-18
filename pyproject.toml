@@ -9,6 +9,11 @@ license = "MIT"
 python = "^3.8"
 Django = "^4.0.2"
 djangorestframework = "^3.13.1"
+uvicorn = "^0.17.4"
+gunicorn = "^20.1.0"
+Pillow = "^9.0.1"
+django-storages = "^1.12.3"
+boto3 = "^1.21.2"
 
 [tool.poetry.dev-dependencies]
 black = "^22.1.0"
