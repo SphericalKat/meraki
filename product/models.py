@@ -9,7 +9,6 @@ from meraki.custom_storages import ImageStorage
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
-    slug = models.SlugField()
 
     class Meta:
         ordering = ("name",)
@@ -26,7 +25,6 @@ class Product(models.Model):
         Category, related_name="products", on_delete=models.CASCADE
     )
     name = models.CharField(max_length=255)
-    slug = models.SlugField()
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
     image = models.ImageField(
@@ -42,9 +40,6 @@ class Product(models.Model):
 
     def __str__(self) -> str:
         return self.name
-
-    def get_absolute_url(self):
-        return f"{self.category.slug}/{self.slug}"
 
     def image_url(self):
         if self.image:

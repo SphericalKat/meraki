@@ -2,11 +2,14 @@ from django.contrib import admin
 from django.urls import include, path
 from rest_framework import routers
 
-from meraki.core import views
+from meraki.core.views import UserViewSet, GroupViewSet
+from product.views import CategoryViewSet, ProductViewSet
 
 router = routers.DefaultRouter()
-router.register(r"users", views.UserViewSet)
-router.register(r"groups", views.GroupViewSet)
+router.register(r"users", UserViewSet)
+router.register(r"groups", GroupViewSet)
+router.register(r"product", ProductViewSet)
+router.register(r"category", CategoryViewSet)
 
 
 urlpatterns = [
