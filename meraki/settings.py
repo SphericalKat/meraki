@@ -135,9 +135,12 @@ STATIC_URL = "static/"
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-AWS_S3_REGION_NAME = "sgp1"
-AWS_S3_ENDPOINT_URL = "https://sgp1.digitaloceanspaces.com"
-AWS_S3_SIGNATURE_VERSION = "s3v4"
+# S3 configuration
+# https://django-storages.readthedocs.io/en/latest/backends/amazon-S3.html
+
+AWS_S3_REGION_NAME = env("AWS_S3_REGION_NAME")
+AWS_S3_ENDPOINT_URL = env("AWS_S3_ENDPOINT_URL")
+AWS_S3_SIGNATURE_VERSION = env("AWS_S3_SIGNATURE_VERSION")
 AWS_ACCESS_KEY_ID = env("AWS_ACCESS_KEY_ID")
 AWS_SECRET_ACCESS_KEY = env("AWS_SECRET_ACCESS_KEY")
-AWS_S3_ADDRESSING_STYLE = 'virtual'
+AWS_S3_ADDRESSING_STYLE = env("AWS_S3_ADDRESSING_STYLE")
