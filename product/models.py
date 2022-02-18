@@ -4,6 +4,8 @@ from django.core.files import File
 from django.db import models
 from PIL import Image
 
+from meraki.custom_storages import ImageStorage
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -13,7 +15,7 @@ class Category(models.Model):
         ordering = ("name",)
 
     def __str__(self) -> str:
-        return f"Category({self.name})"
+        return self.name
 
     def get_absolute_url(self):
         return f"/{self.slug}"
@@ -27,15 +29,19 @@ class Product(models.Model):
     slug = models.SlugField()
     description = models.TextField(blank=True, null=True)
     price = models.DecimalField(max_digits=6, decimal_places=2)
-    image = models.ImageField(upload_to="uploads/", blank=True, null=True)
-    thumbnail = models.ImageField(upload_to="uploads/", blank=True, null=True)
+    image = models.ImageField(
+        upload_to="uploads/", storage=ImageStorage(), blank=True, null=True
+    )
+    thumbnail = models.ImageField(
+        upload_to="uploads/", storage=ImageStorage(), blank=True, null=True
+    )
     date_added = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         ordering = ("-date_added",)
 
     def __str__(self) -> str:
-        return f"Product({self.name})"
+        return self.name
 
     def get_absolute_url(self):
         return f"{self.category.slug}/{self.slug}"
