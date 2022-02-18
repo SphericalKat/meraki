@@ -33,7 +33,7 @@ class Product(models.Model):
         upload_to="uploads/", storage=ImageStorage(), blank=True, null=True
     )
     thumbnail = models.ImageField(
-        upload_to="uploads/", storage=ImageStorage(), blank=True, null=True
+        upload_to="thumbnails/", storage=ImageStorage(), blank=True, null=True
     )
     date_added = models.DateTimeField(auto_now_add=True)
 
@@ -46,24 +46,24 @@ class Product(models.Model):
     def get_absolute_url(self):
         return f"{self.category.slug}/{self.slug}"
 
-    def get_image(self):
+    def image_url(self):
         if self.image:
-            return "http://127.0.0.1:8000" + self.image.url
+            return self.image.url
         return ""
 
-    def get_thumbnail(self):
+    def thumbnail_url(self):
         if self.thumbnail:
-            return "http://127.0.0.1:8000" + self.thumbnail.url
+            return self.thumbnail.url
         else:
             if self.image:
                 self.thumbnail = self.make_thumbnail(self.image)
                 self.save()
 
-                return "http://127.0.0.1:8000" + self.thumbnail.url
+                return self.thumbnail.url
             else:
                 return ""
 
-    def make_thumbname(self, image, size=(300, 200)):
+    def make_thumbnail(self, image, size=(300, 200)):
         img = Image.open(image)
         img.convert("RGB")
         img.thumbnail(size)
@@ -71,6 +71,6 @@ class Product(models.Model):
         thumb_io = BytesIO()
         img.save(thumb_io, "PNG", quality=85)
 
-        thumbnail = File(thumb_io, name=image.name)
+        thumbnail = File(thumb_io, name=image.name.replace("uploads/", ""))
 
         return thumbnail
