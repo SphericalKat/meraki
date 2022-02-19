@@ -5,6 +5,7 @@ from rest_framework import viewsets, permissions
 
 from product.serializers import CategorySerializer, ProductSerializer
 from product.models import Category, Product
+from meraki.custom_permissions import ReadOnly
 
 
 class LatestProductList(APIView):
@@ -17,16 +18,10 @@ class LatestProductList(APIView):
 class ProductViewSet(viewsets.ModelViewSet):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
-    permission_classes = [
-        permissions.IsAdminUser,
-        permissions.IsAuthenticatedOrReadOnly,
-    ]
+    permission_classes = [permissions.IsAdminUser | ReadOnly]
 
 
 class CategoryViewSet(viewsets.ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
-    permission_classes = [
-        permissions.IsAdminUser,
-        permissions.IsAuthenticatedOrReadOnly,
-    ]
+    permission_classes = [permissions.IsAdminUser | ReadOnly]
